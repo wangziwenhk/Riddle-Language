@@ -15,8 +15,8 @@ Public: 'public';
 Protected: 'protected';
 Private: 'Private' ;
 Override: 'override';
-True:'true';
-False:'false';
+True_:'true';
+False_:'false';
 Static:'static';
 Const:'const';
 //可见字符

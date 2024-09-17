@@ -74,8 +74,8 @@ whileStatement
     ;
 
 ifStatement returns [bool hasElse]
-    : If LeftBracket cond=expression RightBracket body=statement_ed {$hasElse=false;}
-    | If LeftBracket cond=expression RightBracket body=statement_ed Else elseBody=statement_ed {$hasElse=true;}
+    : If LeftBracket cond=expression RightBracket body=statement_ed {$hasElse=False;}
+    | If LeftBracket cond=expression RightBracket body=statement_ed Else elseBody=statement_ed {$hasElse=True;}
     ;
 
 returnStatement
@@ -158,8 +158,8 @@ number
     ;
 
 boolean returns [bool value]
-    : True {$value=true;}
-    | False {$value=false;}
+    : True_ {$value=True}
+    | False_ {$value=False}
     ;
 
 string
@@ -167,24 +167,14 @@ string
     ;
 
 float returns [double value]
-    : Float{
-        $value = stod($Float.text);
-    }
+    : Float{$value = float($Float.text)}
     ;
 
 integer returns [int value]
-    : Decimal{
-        $value = stoi($Decimal.text);
-    }
-    | Hexadecimal{
-        $value = stoi($Hexadecimal.text.substr(2),nullptr,16);
-    }
-    | Binary{
-        $value = stoi($Binary.text.substr(2),nullptr,2);
-    }
-    | Octal{
-        $value = stoi($Octal.text.substr(1),nullptr,8);
-    }
+    : Decimal{$value = int($Decimal.text)}
+    | Hexadecimal{$value = int($Hexadecimal.text[2:],16)}
+    | Binary{$value = int($Binary.text[2:],2)}
+    | Octal{$value = int($Octal.text[1:],8)}
     ;
 
 templateArg

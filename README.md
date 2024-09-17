@@ -14,6 +14,8 @@
 
 Riddle Language 是一个内存安全的编程语音，用于取代 Rust 而出现。
 
+该项目是 Riddle 的 python 实现版本
+
 ## 注意
 
 Riddle 仍不完善，现在仍处于开发的早期阶段
