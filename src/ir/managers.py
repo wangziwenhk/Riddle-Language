@@ -34,7 +34,10 @@ class VarManager(BaseManager):
         return self.vars[item][-1]
 
     def set(self, key: str, value: ir.Value) -> None:
+        if key in self.defined[-1]:
+            raise KeyError('The variable already exists')
         self.vars[key].append(value)
+        self.defined[-1].append(key)
 
     # 进入下一个作用域
     def push(self) -> None:
@@ -60,16 +63,14 @@ class ClassManager(BaseManager):
         self.classes: dict[str, list[Class]] = {}
         self.defined: list[list[str]] = []
 
-
-
     # 仅用于获取类
-    def getClass(self, item: str) -> Class:
+    def get_class(self, item: str) -> Class:
         if item not in self.classes:
             raise KeyError('The class does not exist')
         return self.classes[item][-1]
 
     # 获取type(baseType)
-    def getType(self, item: str) -> ir.Type:
+    def get_type(self, item: str) -> ir.Type:
         base_type = {
             'int': ir.IntType(32),
             'float': ir.FloatType(),
@@ -78,10 +79,13 @@ class ClassManager(BaseManager):
         if item in base_type:
             return base_type[item]
 
-        return self.getClass(item).struct
+        return self.get_class(item).struct
 
     def set(self, key: str, value: Class) -> None:
+        if key in self.defined[-1]:
+            raise KeyError('The class already exists')
         self.classes[key].append(value)
+        self.defined[-1].append(key)
 
     def push(self) -> None:
         self.defined.append([])
@@ -89,8 +93,39 @@ class ClassManager(BaseManager):
     def pop(self) -> None:
         for i in self.defined[-1]:
             self.classes.pop(i)
-            if len(self.classes) == 0:
-                self.defined.pop()
+            if len(self.classes[i]) == 0:
+                self.classes.pop(i)
+
+        self.defined.pop()
+
+    def deep(self) -> int:
+        return len(self.defined)
+
+
+class FunctionManager(BaseManager):
+    def __init__(self):
+        self.functions: dict[str, list[ir.Function]] = {}
+        self.defined: list[list[str]] = []
+
+    def get(self, item: str) -> ir.Function:
+        if item not in self.functions:
+            raise KeyError('The function does not exist')
+        return self.functions[item][-1]
+
+    def set(self, key: str, value: ir.Function) -> None:
+        if key in self.defined[-1]:
+            raise KeyError('The function already exists')
+        self.functions[key].append(value)
+        self.defined[-1].append(key)
+
+    def push(self) -> None:
+        self.defined.append([])
+
+    def pop(self) -> None:
+        for i in self.defined[-1]:
+            self.functions.pop(i)
+            if len(self.functions) == 0:
+                self.functions.pop(i)
 
         self.defined.pop()
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Riddle-Python.iml" filepath="$PROJECT_DIR$/.idea/Riddle-Python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Riddle-Language.iml" filepath="$PROJECT_DIR$/.idea/Riddle-Language.iml" />
     </modules>
   </component>
 </project>

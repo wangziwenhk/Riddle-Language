@@ -30,6 +30,7 @@ class GenVisitor(RiddleParserVisitor):
             return_type = self.visitTypeName(ctx.returnType)
 
         function = self.builder.create_function(func_name, return_type, func_args)
+
         self.builder.push()
         self.parent.append(function)
         self.visit(ctx.body)
@@ -87,24 +88,25 @@ class GenVisitor(RiddleParserVisitor):
 
         self.builder.cond_branch(cond, then_block, else_block)
 
-        self.builder.llvm_builder.position_at_end(then_block)
+        self.builder.set_insert_block(then_block)
         self.visit(ctx.body)
         # 防止在 if 语句中 return
         try:
-            self.builder.llvm_builder.branch(old_block)
+            self.builder.branch(old_block)
         except AssertionError as e:
             pass
+        self.builder.set_insert_block(old_block)
 
-        self.builder.llvm_builder.position_at_end(else_block)
+        self.builder.set_insert_block(else_block)
         if ctx.hasElse:
             self.visit(ctx.elseBody)
         # 防止在 else 语句中 return
         try:
-            self.builder.llvm_builder.branch(old_block)
+            self.builder.branch(old_block)
         except AssertionError as e:
             pass
 
-        self.builder.llvm_builder.position_at_end(old_block)
+        self.builder.set_insert_block(old_block)
 
     def visitReturnStatement(self, ctx: RiddleParser.ReturnStatementContext):
         self.builder.create_return(self.visit(ctx.result))
@@ -133,3 +135,9 @@ class GenVisitor(RiddleParserVisitor):
 
     def visitStatement_ed(self, ctx: RiddleParser.Statement_edContext):
         return self.visit(ctx.children[0])
+
+    def visitFuncExpr(self, ctx: RiddleParser.FuncExprContext):
+        if ctx.funcName is None:
+            raise RuntimeError("funcName is None")
+
+        name = ctx.funcName.text
