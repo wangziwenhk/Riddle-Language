@@ -86,11 +86,18 @@ class Builder:
     def create_variable(self, typ: ir.Type, name: str = '', value: ir.Value = None, is_const: bool = False) -> ir.Value:
 
         if self._var_manager.deep() == 1:
-            return self.create_global_var(typ, name, value, is_const)
+            result = self.create_global_var(typ, name, value, is_const)
+            self._var_manager.set(name, result)
+            return result
         else:
             if self._llvm_builder is None:
                 raise RuntimeError('Cannot create statement outside the allowed scope')
-            return self._llvm_builder.alloca(typ, name=name)
+            result = self._llvm_builder.alloca(typ, name=name)
+            self._var_manager.set(name, result)
+            return result
+
+    def add_func_args(self, name: str, var: ir.Value) -> None:
+        self._var_manager.set(name, var)
 
     # 创建一个全局变量
     def create_global_var(self, typ: ir.Type, name: str, value: ir.Value = None, is_const: bool = False) -> ir.Value:
@@ -177,3 +184,6 @@ class Builder:
             raise RuntimeError('Cannot create statement outside the allowed scope')
 
         return self._llvm_builder.call(function, args, name, cconv, tail, fastmath, attrs, arg_attrs)
+
+    def get_var(self, name: str) -> ir.Value:
+        return self._var_manager.get(name)

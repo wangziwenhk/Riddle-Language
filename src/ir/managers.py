@@ -33,14 +33,14 @@ class VarManager(BaseManager):
             raise KeyError('The variable does not exist')
         return self.vars[item][-1]
 
-    def set(self, key: str, value: ir.Value) -> None:
+    def set(self, key: str, var: ir.Value) -> None:
         if key in self.defined[-1]:
             raise KeyError('The variable already exists')
 
         if key not in self.vars:
             self.vars[key] = []
 
-        self.vars[key].append(value)
+        self.vars[key].append(var)
         self.defined[-1].append(key)
 
     # 进入下一个作用域

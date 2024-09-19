@@ -32,6 +32,10 @@ class GenVisitor(RiddleParserVisitor):
         function = self.builder.create_function(func_name, return_type, func_args)
         self.builder.add_func_call(func_name, function)
         self.builder.push()
+
+        for i in function.args:
+            self.builder.add_func_args(i.name,i)
+
         self.parent.append(function)
         self.visit(ctx.body)
         self.builder.pop()
@@ -155,3 +159,7 @@ class GenVisitor(RiddleParserVisitor):
             args.append(self.visit(i))
 
         return args
+
+    def visitObjectExpr(self, ctx: RiddleParser.ObjectExprContext):
+        name = ctx.getText()
+        return self.builder.get_var(name)
