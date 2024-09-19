@@ -7,6 +7,6 @@ fun main(a:int,b:int)->int{
     var c = 1
     if(true){
         return 0
-        var d = get(1,1)
+        var d = get(c,1)
     }
 }

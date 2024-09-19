@@ -79,6 +79,7 @@ class GenVisitor(RiddleParserVisitor):
             raise RuntimeError("None Type")
         self.builder.create_variable(typ, name, value)
 
+
     def visitIfStatement(self, ctx: RiddleParser.IfStatementContext):
         if not isinstance(self.parent[-1], ir.Function):
             raise ParserError("if statement only run in function")
@@ -163,3 +164,13 @@ class GenVisitor(RiddleParserVisitor):
     def visitObjectExpr(self, ctx: RiddleParser.ObjectExprContext):
         name = ctx.getText()
         return self.builder.get_var(name)
+
+    def visitPtrExpr(self, ctx:RiddleParser.PtrExprContext):
+        ptr = self.visit(ctx.children[0])
+        if not isinstance(ptr, ir.Value):
+            raise RuntimeError("Ptr value is not a IR")
+
+        if isinstance(ptr, ir.Instruction) and ptr.opname == 'alloca':
+            return self.builder.create_load(ptr)
+        else:
+            return ptr

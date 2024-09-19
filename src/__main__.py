@@ -22,7 +22,7 @@ if __name__ == '__main__':
     code = None
     # 如果在测试模式则读取测试文件
     if arguments[0] == '-test':
-        with open('../test/main.red', 'r', encoding='utf-8') as file:
+        with open('test/main.red', 'r', encoding='utf-8') as file:
             code = file.read()
 
         gen = GenVisitor('main')

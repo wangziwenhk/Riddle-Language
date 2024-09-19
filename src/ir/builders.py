@@ -71,7 +71,7 @@ class Builder:
         return self._llvm_builder.store(value, ptr)
 
     # 创建一个 load 指令
-    def create_load(self, ptr: ir.Value, name: ir.Value) -> ir.Value:
+    def create_load(self, ptr: ir.Value, name: str = '') -> ir.Value:
         if self._llvm_builder is None:
             raise RuntimeError('Cannot create statement outside the allowed scope')
         return self._llvm_builder.load(ptr, name)
@@ -93,6 +93,7 @@ class Builder:
             if self._llvm_builder is None:
                 raise RuntimeError('Cannot create statement outside the allowed scope')
             result = self._llvm_builder.alloca(typ, name=name)
+            self.create_store(value, result)
             self._var_manager.set(name, result)
             return result
 
