@@ -72,7 +72,7 @@ class GenVisitor(RiddleParserVisitor):
         elif value is not None:
             typ = value.type
         else:
-            typ = ir.VoidType()
+            raise RuntimeError("None Type")
         self.builder.create_variable(typ, name, value)
 
     def visitIfStatement(self, ctx: RiddleParser.IfStatementContext):
@@ -136,15 +136,15 @@ class GenVisitor(RiddleParserVisitor):
     def visitStatement_ed(self, ctx: RiddleParser.Statement_edContext):
         return self.visit(ctx.children[0])
 
-    def visitFuncExpr(self, ctx: RiddleParser.FuncExprContext):
+    def visitFuncExpr(self, ctx: RiddleParser.FuncExprContext) -> ir.Value:
         if ctx.funcName is None:
             raise RuntimeError("funcName is None")
 
         name = ctx.funcName.text
         function: ir.Function = self.builder.get_func(name)
         args = self.visit(ctx.args)
-        self.builder.call(function, args)
-        # todo: 完善 args
+
+        return self.builder.call(function, args)
 
     def visitArgsExpr(self, ctx: RiddleParser.ArgsExprContext) -> list[ir.Value]:
         args: list[ir.Value] = []

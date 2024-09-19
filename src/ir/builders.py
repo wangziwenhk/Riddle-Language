@@ -144,21 +144,36 @@ class Builder:
     def get_bool(value: bool) -> ir.Value:
         return ir.Constant(ir.IntType(1), int(value))
 
-    def cond_branch(self, cond, then_block: ir.Block, else_block: ir.Block) -> None:
+    def cond_branch(self, cond: ir.Value, then_block: ir.Block, else_block: ir.Block) -> None:
+        if self._llvm_builder is None:
+            raise RuntimeError('Cannot create statement outside the allowed scope')
+
         self._llvm_builder.cbranch(cond, then_block, else_block)
 
     def get_now_block(self) -> ir.Block:
+        if self._llvm_builder is None:
+            raise RuntimeError('Cannot create statement outside the allowed scope')
+
         return self._llvm_builder.block
 
     def add_func_call(self, name: str, func: ir.Function) -> None:
         self._func_manager.set(name, func)
 
     def set_insert_block(self, block: ir.Block) -> None:
+        if self._llvm_builder is None:
+            raise RuntimeError('Cannot create statement outside the allowed scope')
+
         self._llvm_builder.position_at_end(block)
 
     def branch(self, block: ir.Block) -> None:
+        if self._llvm_builder is None:
+            raise RuntimeError('Cannot create statement outside the allowed scope')
+
         self._llvm_builder.branch(block)
 
     def call(self, function: ir.Function, args: list[ir.Value], name: str = '', cconv=None, tail: bool = False,
-             fastmath: tuple = (), attrs: tuple = (), arg_attrs=None) -> None:
-        self._llvm_builder.call(function, args, name, cconv, tail, fastmath, attrs, arg_attrs)
+             fastmath: tuple = (), attrs: tuple = (), arg_attrs=None) -> ir.Value:
+        if self._llvm_builder is None:
+            raise RuntimeError('Cannot create statement outside the allowed scope')
+
+        return self._llvm_builder.call(function, args, name, cconv, tail, fastmath, attrs, arg_attrs)

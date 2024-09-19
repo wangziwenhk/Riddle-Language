@@ -23,7 +23,7 @@ class BaseManager(abc.ABC):
 
 
 class VarManager(BaseManager):
-    def __init__(self):
+    def __init__(self) -> None:
         self.vars: dict[str, list[ir.Value]] = {}
         self.defined: list[list] = []
 
@@ -63,7 +63,7 @@ class VarManager(BaseManager):
 
 
 class ClassManager(BaseManager):
-    def __init__(self):
+    def __init__(self) -> None:
         self.classes: dict[str, list[Class]] = {}
         self.defined: list[list[str]] = []
 
@@ -100,7 +100,7 @@ class ClassManager(BaseManager):
 
     def pop(self) -> None:
         for i in self.defined[-1]:
-            self.classes.pop(i)
+            self.classes[i].pop()
             if len(self.classes[i]) == 0:
                 self.classes.pop(i)
 
@@ -111,7 +111,7 @@ class ClassManager(BaseManager):
 
 
 class FunctionManager(BaseManager):
-    def __init__(self):
+    def __init__(self) -> None:
         self.functions: dict[str, list[ir.Function]] = {}
         self.defined: list[list[str]] = []
 
@@ -135,8 +135,8 @@ class FunctionManager(BaseManager):
 
     def pop(self) -> None:
         for i in self.defined[-1]:
-            self.functions.pop(i)
-            if len(self.functions) == 0:
+            self.functions[i].pop()
+            if len(self.functions[i]) == 0:
                 self.functions.pop(i)
 
         self.defined.pop()
