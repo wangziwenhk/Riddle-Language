@@ -1,4 +1,4 @@
-# Generated from C:/Users/wangz/PycharmProjects/Riddle-Python/RiddleParser.g4 by ANTLR 4.13.1
+# Generated from C:/Users/Administrator/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .RiddleParser import RiddleParser

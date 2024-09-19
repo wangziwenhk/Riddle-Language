@@ -30,7 +30,7 @@ class GenVisitor(RiddleParserVisitor):
             return_type = self.visitTypeName(ctx.returnType)
 
         function = self.builder.create_function(func_name, return_type, func_args)
-
+        self.builder.add_func_call(func_name, function)
         self.builder.push()
         self.parent.append(function)
         self.visit(ctx.body)
@@ -141,3 +141,17 @@ class GenVisitor(RiddleParserVisitor):
             raise RuntimeError("funcName is None")
 
         name = ctx.funcName.text
+        function: ir.Function = self.builder.get_func(name)
+        args = self.visit(ctx.args)
+        self.builder.call(function, args)
+        # todo: 完善 args
+
+    def visitArgsExpr(self, ctx: RiddleParser.ArgsExprContext) -> list[ir.Value]:
+        args: list[ir.Value] = []
+        for i in ctx.children:
+            if isinstance(i, TerminalNodeImpl):
+                continue
+
+            args.append(self.visit(i))
+
+        return args

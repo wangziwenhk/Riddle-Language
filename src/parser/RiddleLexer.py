@@ -1,4 +1,4 @@
-# Generated from C:/Users/wangz/PycharmProjects/Riddle-Python/RiddleLexer.g4 by ANTLR 4.13.1
+# Generated from C:/Users/Administrator/PycharmProjects/Riddle-Language/RiddleLexer.g4 by ANTLR 4.13.1
 from antlr4 import *
 from io import StringIO
 import sys

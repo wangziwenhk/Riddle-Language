@@ -158,3 +158,7 @@ class Builder:
 
     def branch(self, block: ir.Block) -> None:
         self._llvm_builder.branch(block)
+
+    def call(self, function: ir.Function, args: list[ir.Value], name: str = '', cconv=None, tail: bool = False,
+             fastmath: tuple = (), attrs: tuple = (), arg_attrs=None) -> None:
+        self._llvm_builder.call(function, args, name, cconv, tail, fastmath, attrs, arg_attrs)

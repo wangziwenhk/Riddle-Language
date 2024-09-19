@@ -36,6 +36,10 @@ class VarManager(BaseManager):
     def set(self, key: str, value: ir.Value) -> None:
         if key in self.defined[-1]:
             raise KeyError('The variable already exists')
+
+        if key not in self.vars:
+            self.vars[key] = []
+
         self.vars[key].append(value)
         self.defined[-1].append(key)
 
@@ -84,6 +88,10 @@ class ClassManager(BaseManager):
     def set(self, key: str, value: Class) -> None:
         if key in self.defined[-1]:
             raise KeyError('The class already exists')
+
+        if key not in self.classes:
+            self.classes[key] = []
+
         self.classes[key].append(value)
         self.defined[-1].append(key)
 
@@ -115,6 +123,10 @@ class FunctionManager(BaseManager):
     def set(self, key: str, value: ir.Function) -> None:
         if key in self.defined[-1]:
             raise KeyError('The function already exists')
+
+        if key not in self.functions:
+            self.functions[key] = []
+
         self.functions[key].append(value)
         self.defined[-1].append(key)
 
