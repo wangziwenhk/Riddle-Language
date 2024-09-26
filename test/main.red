@@ -5,8 +5,7 @@ fun get(a:int,b:int)->int{
 }
 fun main(a:int,b:int)->int{
     var c = 1
-    if(true){
-        return 0
-        var d = get(c,1)
+    for(var i=0;i<=10;i){
+
     }
 }

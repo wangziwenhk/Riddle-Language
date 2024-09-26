@@ -1,21 +1,11 @@
 import sys
-
-from antlr4 import CommonTokenStream, InputStream
-
-from src.parser.RiddleLexer import RiddleLexer
-from src.parser.RiddleParser import RiddleParser
+from src.build import unit
+from src.build import graph
+from src.build.unit import get_parser_tree
 from src.visitors.generater import GenVisitor
 
 arguments = sys.argv[1:]
 
-
-def get_parser_tree(code: str):
-    input_stream = InputStream(code)
-    lexer = RiddleLexer(input_stream)
-    token_stream = CommonTokenStream(lexer)
-    parser = RiddleParser(token_stream)
-
-    return parser.program()
 
 
 if __name__ == '__main__':
@@ -25,6 +15,12 @@ if __name__ == '__main__':
         with open('test/main.red', 'r', encoding='utf-8') as file:
             code = file.read()
 
-        gen = GenVisitor('main')
-        gen.visit(get_parser_tree(code))
-        print(gen.module)
+        g = graph.BuildGraph()
+        u = unit.Unit(code)
+
+        g.add_node(u)
+        g.parser_graph()
+
+        with open('test/main.ll', 'w', encoding='utf-8') as file:
+            file.write(g.get_node("main").gen.module.__str__())
+        print(g.get_node("main").gen.module)

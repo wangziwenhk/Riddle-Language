@@ -34,7 +34,7 @@ class GenVisitor(RiddleParserVisitor):
         self.builder.push()
 
         for i in function.args:
-            self.builder.add_func_args(i.name,i)
+            self.builder.add_func_args(i.name, i)
 
         self.parent.append(function)
         self.visit(ctx.body)
@@ -79,12 +79,12 @@ class GenVisitor(RiddleParserVisitor):
             raise RuntimeError("None Type")
         self.builder.create_variable(typ, name, value)
 
-
     def visitIfStatement(self, ctx: RiddleParser.IfStatementContext):
         if not isinstance(self.parent[-1], ir.Function):
             raise ParserError("if statement only run in function")
 
         function: ir.Function = self.parent[-1]
+        self.builder.push()
         cond: ir.Value = self.visit(ctx.cond)
 
         old_block = self.builder.get_now_block()
@@ -112,6 +112,35 @@ class GenVisitor(RiddleParserVisitor):
             pass
 
         self.builder.set_insert_block(old_block)
+        self.builder.pop()
+
+    def visitForStatement(self, ctx: RiddleParser.ForStatementContext):
+        if not isinstance(self.parent[-1], ir.Function):
+            raise ParserError("if statement only run in function")
+
+        function: ir.Function = self.parent[-1]
+
+        old_block = self.builder.get_now_block()
+        cond_block = function.append_basic_block("for.cond")
+        loop_block = function.append_basic_block("for.loop")
+
+        self.builder.push()
+        # 初始化循环变量
+        if ctx.init is not None:
+            self.visit(ctx.init)
+
+        self.builder.branch(cond_block)
+        self.builder.set_insert_block(cond_block)
+        cond: ir.Value = self.visit(ctx.termCond)
+        self.builder.cond_branch(cond, loop_block,old_block)
+
+        self.builder.set_insert_block(loop_block)
+        self.visit(ctx.body)
+        self.builder.branch(cond_block)
+
+        self.builder.set_insert_block(old_block)
+
+        self.builder.pop()
 
     def visitReturnStatement(self, ctx: RiddleParser.ReturnStatementContext):
         self.builder.create_return(self.visit(ctx.result))
@@ -165,7 +194,7 @@ class GenVisitor(RiddleParserVisitor):
         name = ctx.getText()
         return self.builder.get_var(name)
 
-    def visitPtrExpr(self, ctx:RiddleParser.PtrExprContext):
+    def visitPtrExpr(self, ctx: RiddleParser.PtrExprContext):
         ptr = self.visit(ctx.children[0])
         if not isinstance(ptr, ir.Value):
             raise RuntimeError("Ptr value is not a IR")
