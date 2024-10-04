@@ -1,4 +1,3 @@
-from llvmlite import ir
 from antlr4 import CommonTokenStream, InputStream
 
 from src.parser.RiddleLexer import RiddleLexer

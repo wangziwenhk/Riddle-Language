@@ -1,4 +1,4 @@
-# Generated from C:/Users/Administrator/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.1
+# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .RiddleParser import RiddleParser
@@ -203,6 +203,15 @@ class RiddleParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by RiddleParser#andAssignExpr.
     def exitAndAssignExpr(self, ctx:RiddleParser.AndAssignExprContext):
+        pass
+
+
+    # Enter a parse tree produced by RiddleParser#nullExpr.
+    def enterNullExpr(self, ctx:RiddleParser.NullExprContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#nullExpr.
+    def exitNullExpr(self, ctx:RiddleParser.NullExprContext):
         pass
 
 

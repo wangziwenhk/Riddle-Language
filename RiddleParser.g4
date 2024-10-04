@@ -74,8 +74,8 @@ whileStatement
     ;
 
 ifStatement returns [bool hasElse]
-    : If LeftBracket cond=expression RightBracket body=statement_ed {$hasElse=False;}
-    | If LeftBracket cond=expression RightBracket body=statement_ed Else elseBody=statement_ed {$hasElse=True;}
+    : If LeftBracket cond=expression RightBracket body=statement_ed {$hasElse=False}
+    | If LeftBracket cond=expression RightBracket body=statement_ed Else elseBody=statement_ed {$hasElse=True}
     ;
 
 returnStatement
@@ -147,6 +147,7 @@ expression
     | string                                                #stringExpr
     | number                                                #numberExpr
     | boolean                                               #booleanExpr
+    | Null                                                  #nullExpr
     ;
 
 id: Identifier;

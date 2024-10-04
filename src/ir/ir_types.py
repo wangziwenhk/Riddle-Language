@@ -29,5 +29,6 @@ class Class(BaseType):
     def getName(self) -> str:
         return self.name
 
-    def addType(self, name: str, typ: ir.Type):
+    def add_member(self, name: str, typ: ir.Type):
         self.struct.set_body(self.struct.elements.append(typ))
+        self.members[len(self.members)] = name
