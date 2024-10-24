@@ -9,6 +9,11 @@ else:
 
 class RiddleParserVisitor(ParseTreeVisitor):
 
+    # Visit a parse tree produced by RiddleParser#null_cnt.
+    def visitNull_cnt(self, ctx:RiddleParser.Null_cntContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by RiddleParser#program.
     def visitProgram(self, ctx:RiddleParser.ProgramContext):
         return self.visitChildren(ctx)
@@ -21,6 +26,11 @@ class RiddleParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by RiddleParser#statement.
     def visitStatement(self, ctx:RiddleParser.StatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RiddleParser#bodyExpr.
+    def visitBodyExpr(self, ctx:RiddleParser.BodyExprContext):
         return self.visitChildren(ctx)
 
 
@@ -54,11 +64,6 @@ class RiddleParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by RiddleParser#funcBody.
-    def visitFuncBody(self, ctx:RiddleParser.FuncBodyContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by RiddleParser#forStatement.
     def visitForStatement(self, ctx:RiddleParser.ForStatementContext):
         return self.visitChildren(ctx)
@@ -84,8 +89,13 @@ class RiddleParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by RiddleParser#classBody.
-    def visitClassBody(self, ctx:RiddleParser.ClassBodyContext):
+    # Visit a parse tree produced by RiddleParser#tryExpr.
+    def visitTryExpr(self, ctx:RiddleParser.TryExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RiddleParser#catchExpr.
+    def visitCatchExpr(self, ctx:RiddleParser.CatchExprContext):
         return self.visitChildren(ctx)
 
 

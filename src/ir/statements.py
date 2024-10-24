@@ -2,6 +2,10 @@ import enum
 
 
 class StmtTypeID(enum.Enum):
+    # 没有任何效果的语句
+    NoneStmtID = -99
+    # 主语句
+    ProgramStmt = -1
     # 常量语句
     IntegerStmtID = 0
     FloatStmtID = 1
@@ -22,8 +26,6 @@ class StmtTypeID(enum.Enum):
     LabelStmtID = 15
     BinaryOpStmtID = 16
     UnaryOpStmtID = 17
-    # 没有任何效果的语句
-    NoneStmtID = -1
 
 
 # 基本类型
@@ -42,6 +44,13 @@ class ConstantStmt(BaseStmt):
 
     def isConstant(self) -> bool:
         return True
+
+
+class ProgramStmt(BaseStmt):
+    def __init__(self) -> None:
+        super().__init__(StmtTypeID.ProgramStmt)
+        self.body: list[BaseStmt] = []
+        self.package: str = ""
 
 
 # 存储 int 常量的语句
@@ -83,6 +92,7 @@ class BooleanStmt(ConstantStmt):
     def get_value(self) -> bool:
         return self._value
 
+
 # 存储 None
 class NullStmt(ConstantStmt):
     def __init__(self) -> None:
@@ -91,3 +101,41 @@ class NullStmt(ConstantStmt):
     @staticmethod
     def get_value() -> None:
         return None
+
+
+# 无效果的语句
+class NoneStmt(BaseStmt):
+    def __init__(self) -> None:
+        super().__init__(StmtTypeID.NoneStmtID)
+
+
+class VarDefineStmt(BaseStmt):
+    def __init__(self, name: str, typ: str, value: BaseStmt) -> None:
+        super().__init__(StmtTypeID.VarDefineStmtID)
+        self._name = name
+        self._type = typ
+        self._value = value
+
+    def get_name(self) -> str:
+        return self._name
+
+    def get_type(self) -> str:
+        return self._type
+
+    def get_value(self) -> BaseStmt:
+        return self._value
+
+
+class FuncDefineStmt(BaseStmt):
+    class Arg:
+        def __init__(self, name: str, typ: str, default: BaseStmt = NoneStmt()) -> None:
+            self.name: str = name
+            self.type: str = typ
+            self.default: BaseStmt = default
+
+    def __init__(self, name: str, return_type: str, args: list[Arg], body: BaseStmt) -> None:
+        super().__init__(StmtTypeID.FuncDefineStmtID)
+        self.name = name
+        self.return_type = return_type
+        self.args = args
+        self.body = body

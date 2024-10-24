@@ -1,14 +1,11 @@
 import abc
 
 from llvmlite import ir
-from src.ir.ir_types import Class
+
+from src.ir.ir_types import Class, BuildArg
 
 
 class BaseManager(abc.ABC):
-    @abc.abstractmethod
-    def set(self, key, value):
-        pass
-
     @abc.abstractmethod
     def push(self):
         pass
@@ -112,22 +109,22 @@ class ClassManager(BaseManager):
 
 class FunctionManager(BaseManager):
     def __init__(self) -> None:
-        self.functions: dict[str, list[ir.Function]] = {}
+        self.functions: dict[str, list[tuple[ir.Function, BuildArg | None]]] = {}
         self.defined: list[list[str]] = []
 
     def get(self, item: str) -> ir.Function:
         if item not in self.functions:
             raise KeyError('The function does not exist')
-        return self.functions[item][-1]
+        return self.functions[item][-1][0]
 
-    def set(self, key: str, value: ir.Function) -> None:
+    def set(self, key: str, value: ir.Function, args: BuildArg | None = None) -> None:
         if key in self.defined[-1]:
             raise KeyError('The function already exists')
 
         if key not in self.functions:
             self.functions[key] = []
 
-        self.functions[key].append(value)
+        self.functions[key].append((value, args))
         self.defined[-1].append(key)
 
     def push(self) -> None:

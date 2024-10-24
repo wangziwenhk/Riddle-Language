@@ -1,12 +1,8 @@
 import sys
 from src.build import unit
 from src.build import graph
-from src.build.unit import get_parser_tree
-from src.visitors.generater import GenVisitor
 
 arguments = sys.argv[1:]
-
-
 
 if __name__ == '__main__':
     code = None
@@ -22,5 +18,5 @@ if __name__ == '__main__':
         g.parser_graph()
 
         with open('test/main.ll', 'w', encoding='utf-8') as file:
-            file.write(g.get_node("main").gen.module.__str__())
-        print(g.get_node("main").gen.module)
+            file.write(str(g.get_node("main").get_module()))
+        print(g.get_node("main").get_module())

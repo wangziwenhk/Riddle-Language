@@ -10,6 +10,11 @@ options {
 @parserFile::members {
 }
 
+null_cnt
+    : Semi
+    | Endl
+    ;
+
 program
     : statement_ed*
     | EOF
@@ -31,9 +36,15 @@ statement
     | whileStatement
     | ifStatement
     | returnStatement
+    | tryExpr
     | expression
     | LeftCurly statement_ed* RightCurly
     ;
+
+bodyExpr
+    : statement_ed*
+    ;
+
 
 packStatement
     : Package packName=id
@@ -58,11 +69,7 @@ defineArgs
     ;
 
 funcDefine
-    : Func funcName=Identifier LeftBracket args=defineArgs RightBracket (Sub Greater returnType=typeName)? LeftCurly body=funcBody RightCurly
-    ;
-
-funcBody
-    : statement_ed*
+    : Func funcName=Identifier LeftBracket args=defineArgs RightBracket (Sub Greater returnType=typeName)? LeftCurly body=bodyExpr RightCurly
     ;
 
 forStatement
@@ -83,11 +90,15 @@ returnStatement
     ;
 
 classDefine
-    : Class className = id LeftCurly body=classBody RightCurly
+    : Class className = id LeftCurly body=bodyExpr RightCurly
     ;
 
-classBody
-    : statement_ed*
+tryExpr
+    : Try LeftCurly tryBody=bodyExpr RightCurly null_cnt? catchExpr
+    ;
+
+catchExpr
+    : Catch LeftBracket varDefineStatement RightBracket
     ;
 
 // 这一块就是使用

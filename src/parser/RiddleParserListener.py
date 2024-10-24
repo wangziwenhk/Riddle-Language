@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by RiddleParser.
 class RiddleParserListener(ParseTreeListener):
 
+    # Enter a parse tree produced by RiddleParser#null_cnt.
+    def enterNull_cnt(self, ctx:RiddleParser.Null_cntContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#null_cnt.
+    def exitNull_cnt(self, ctx:RiddleParser.Null_cntContext):
+        pass
+
+
     # Enter a parse tree produced by RiddleParser#program.
     def enterProgram(self, ctx:RiddleParser.ProgramContext):
         pass
@@ -32,6 +41,15 @@ class RiddleParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by RiddleParser#statement.
     def exitStatement(self, ctx:RiddleParser.StatementContext):
+        pass
+
+
+    # Enter a parse tree produced by RiddleParser#bodyExpr.
+    def enterBodyExpr(self, ctx:RiddleParser.BodyExprContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#bodyExpr.
+    def exitBodyExpr(self, ctx:RiddleParser.BodyExprContext):
         pass
 
 
@@ -89,15 +107,6 @@ class RiddleParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by RiddleParser#funcBody.
-    def enterFuncBody(self, ctx:RiddleParser.FuncBodyContext):
-        pass
-
-    # Exit a parse tree produced by RiddleParser#funcBody.
-    def exitFuncBody(self, ctx:RiddleParser.FuncBodyContext):
-        pass
-
-
     # Enter a parse tree produced by RiddleParser#forStatement.
     def enterForStatement(self, ctx:RiddleParser.ForStatementContext):
         pass
@@ -143,12 +152,21 @@ class RiddleParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by RiddleParser#classBody.
-    def enterClassBody(self, ctx:RiddleParser.ClassBodyContext):
+    # Enter a parse tree produced by RiddleParser#tryExpr.
+    def enterTryExpr(self, ctx:RiddleParser.TryExprContext):
         pass
 
-    # Exit a parse tree produced by RiddleParser#classBody.
-    def exitClassBody(self, ctx:RiddleParser.ClassBodyContext):
+    # Exit a parse tree produced by RiddleParser#tryExpr.
+    def exitTryExpr(self, ctx:RiddleParser.TryExprContext):
+        pass
+
+
+    # Enter a parse tree produced by RiddleParser#catchExpr.
+    def enterCatchExpr(self, ctx:RiddleParser.CatchExprContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#catchExpr.
+    def exitCatchExpr(self, ctx:RiddleParser.CatchExprContext):
         pass
 
 

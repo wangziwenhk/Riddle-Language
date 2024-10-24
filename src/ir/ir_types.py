@@ -2,10 +2,19 @@ import enum
 
 from llvmlite import ir
 
+from src.ir.statements import BaseStmt
+
 
 class TypeID(enum.Enum):
     VariableType = 1
     ClassType = 2
+
+
+class BuildArg:
+    def __init__(self, name: str, typ: ir.Type, default: BaseStmt) -> None:
+        self.name: str = name
+        self.type: ir.Type = typ
+        self.default: BaseStmt = default
 
 
 class BaseType:

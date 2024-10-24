@@ -2,10 +2,11 @@
 from llvmlite import ir
 
 from src.ir.managers import VarManager, ClassManager, FunctionManager
-from src.ir.ir_types import Class
+from src.ir.ir_types import Class, BuildArg
 
 
 class Builder:
+
     def __init__(self, module: ir.Module):
         self._module = module
         self._context = module.context
@@ -20,7 +21,7 @@ class Builder:
     def get_context(self) -> ir.Context:
         return self._context
 
-    def create_function(self, name: str, return_type: ir.types = ir.VoidType(), args: dict[str, ir.Type] | None = None):
+    def create_function(self, name: str, return_type: ir.types = ir.VoidType(), args: list[BuildArg] | None = None):
         if args is None:
             args = {}
 
@@ -28,8 +29,8 @@ class Builder:
         args_type: list[ir.Type] = []
         args_name: list[str] = []
         for i in args:
-            args_name.append(i)
-            args_type.append(args[i])
+            args_name.append(i.name)
+            args_type.append(args[i].type)
 
         # 创建函数
         func_type = ir.FunctionType(return_type, args_type)
@@ -164,8 +165,8 @@ class Builder:
 
         return self._llvm_builder.block
 
-    def add_func_call(self, name: str, func: ir.Function) -> None:
-        self._func_manager.set(name, func)
+    def add_func_call(self, name: str, func: ir.Function, args: list[BuildArg] | None = None) -> None:
+        self._func_manager.set(name, func, args)
 
     def set_insert_block(self, block: ir.Block) -> None:
         if self._llvm_builder is None:
