@@ -30,7 +30,7 @@ class Builder:
         args_name: list[str] = []
         for i in args:
             args_name.append(i.name)
-            args_type.append(args[i].type)
+            args_type.append(i.type)
 
         # 创建函数
         func_type = ir.FunctionType(return_type, args_type)

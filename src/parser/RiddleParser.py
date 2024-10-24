@@ -1,4 +1,4 @@
-# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.1
+# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -14,22 +14,22 @@ def serializedATN():
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
-        2,27,7,27,2,28,7,28,2,29,7,29,1,0,1,0,1,1,5,1,64,8,1,10,1,12,1,67,
-        9,1,1,1,3,1,70,8,1,1,2,1,2,3,2,74,8,2,1,2,3,2,77,8,2,1,2,1,2,3,2,
-        81,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,96,
-        8,3,10,3,12,3,99,9,3,1,3,3,3,102,8,3,1,4,5,4,105,8,4,10,4,12,4,108,
-        9,4,1,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,
-        1,7,1,7,1,7,1,7,1,7,1,7,3,7,131,8,7,1,8,1,8,1,8,5,8,136,8,8,10,8,
-        12,8,139,9,8,1,8,3,8,142,8,8,1,9,1,9,1,9,1,9,1,9,5,9,149,8,9,10,
-        9,12,9,152,9,9,1,9,1,9,1,9,3,9,157,8,9,1,10,1,10,1,10,1,10,1,10,
-        1,10,1,10,1,10,3,10,167,8,10,1,10,1,10,1,10,1,10,1,11,1,11,1,11,
-        3,11,176,8,11,1,11,1,11,3,11,180,8,11,1,11,1,11,3,11,184,8,11,1,
-        11,1,11,1,11,1,12,1,12,1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,13,1,
-        13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,211,
-        8,13,1,14,1,14,3,14,215,8,14,1,15,1,15,1,15,1,15,1,15,1,15,1,16,
-        1,16,1,16,1,16,1,16,3,16,228,8,16,1,16,1,16,1,17,1,17,1,17,1,17,
-        1,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,3,18,244,8,18,1,18,1,18,
-        1,18,5,18,249,8,18,10,18,12,18,252,9,18,1,19,1,19,1,20,1,20,1,20,
+        2,27,7,27,2,28,7,28,2,29,7,29,1,0,5,0,62,8,0,10,0,12,0,65,9,0,1,
+        0,3,0,68,8,0,1,1,1,1,1,2,1,2,3,2,74,8,2,1,2,3,2,77,8,2,1,2,1,2,3,
+        2,81,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,
+        96,8,3,10,3,12,3,99,9,3,1,3,3,3,102,8,3,1,4,5,4,105,8,4,10,4,12,
+        4,108,9,4,1,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,
+        7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,131,8,7,1,8,1,8,1,8,5,8,136,8,
+        8,10,8,12,8,139,9,8,1,8,3,8,142,8,8,1,9,1,9,1,9,1,9,1,9,5,9,149,
+        8,9,10,9,12,9,152,9,9,1,9,1,9,1,9,3,9,157,8,9,1,10,1,10,1,10,1,10,
+        1,10,1,10,1,10,1,10,3,10,167,8,10,1,10,1,10,1,10,1,10,1,11,1,11,
+        1,11,3,11,176,8,11,1,11,1,11,3,11,180,8,11,1,11,1,11,3,11,184,8,
+        11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,
+        13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,
+        13,211,8,13,1,14,1,14,3,14,215,8,14,1,15,1,15,1,15,1,15,1,15,1,15,
+        1,16,1,16,1,16,1,16,1,16,3,16,228,8,16,1,16,1,16,1,17,1,17,1,17,
+        1,17,1,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,3,18,244,8,18,1,18,
+        1,18,1,18,5,18,249,8,18,10,18,12,18,252,9,18,1,19,1,19,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
@@ -37,29 +37,29 @@ def serializedATN():
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
-        1,20,1,20,1,20,1,20,1,20,1,20,1,20,3,20,357,8,20,1,20,1,20,1,20,
+        1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,3,20,357,8,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
         1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
-        1,20,1,20,1,20,1,20,1,20,1,20,1,20,5,20,421,8,20,10,20,12,20,424,
-        9,20,1,21,1,21,1,22,1,22,3,22,430,8,22,1,23,1,23,1,23,1,23,3,23,
-        436,8,23,1,24,1,24,1,25,1,25,1,25,1,26,1,26,1,26,1,26,1,26,1,26,
-        1,26,1,26,3,26,451,8,26,1,27,1,27,3,27,455,8,27,1,28,1,28,1,28,5,
-        28,460,8,28,10,28,12,28,463,9,28,1,28,3,28,466,8,28,1,29,1,29,1,
-        29,1,29,1,29,1,29,1,29,3,29,475,8,29,1,29,1,29,1,29,1,29,1,29,5,
-        29,482,8,29,10,29,12,29,485,9,29,1,29,0,3,36,40,58,30,0,2,4,6,8,
-        10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,
-        54,56,58,0,1,2,0,30,30,51,51,545,0,60,1,0,0,0,2,69,1,0,0,0,4,80,
-        1,0,0,0,6,101,1,0,0,0,8,106,1,0,0,0,10,109,1,0,0,0,12,112,1,0,0,
-        0,14,130,1,0,0,0,16,141,1,0,0,0,18,156,1,0,0,0,20,158,1,0,0,0,22,
-        172,1,0,0,0,24,188,1,0,0,0,26,210,1,0,0,0,28,212,1,0,0,0,30,216,
+        1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,5,20,421,8,20,10,20,12,20,
+        424,9,20,1,21,1,21,1,22,1,22,3,22,430,8,22,1,23,1,23,1,23,1,23,3,
+        23,436,8,23,1,24,1,24,1,25,1,25,1,25,1,26,1,26,1,26,1,26,1,26,1,
+        26,1,26,1,26,3,26,451,8,26,1,27,1,27,3,27,455,8,27,1,28,1,28,1,28,
+        5,28,460,8,28,10,28,12,28,463,9,28,1,28,3,28,466,8,28,1,29,1,29,
+        1,29,1,29,1,29,1,29,1,29,3,29,475,8,29,1,29,1,29,1,29,1,29,1,29,
+        5,29,482,8,29,10,29,12,29,485,9,29,1,29,0,3,36,40,58,30,0,2,4,6,
+        8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,
+        52,54,56,58,0,1,2,0,30,30,51,51,545,0,67,1,0,0,0,2,69,1,0,0,0,4,
+        80,1,0,0,0,6,101,1,0,0,0,8,106,1,0,0,0,10,109,1,0,0,0,12,112,1,0,
+        0,0,14,130,1,0,0,0,16,141,1,0,0,0,18,156,1,0,0,0,20,158,1,0,0,0,
+        22,172,1,0,0,0,24,188,1,0,0,0,26,210,1,0,0,0,28,212,1,0,0,0,30,216,
         1,0,0,0,32,222,1,0,0,0,34,231,1,0,0,0,36,243,1,0,0,0,38,253,1,0,
         0,0,40,356,1,0,0,0,42,425,1,0,0,0,44,429,1,0,0,0,46,435,1,0,0,0,
         48,437,1,0,0,0,50,439,1,0,0,0,52,450,1,0,0,0,54,454,1,0,0,0,56,465,
-        1,0,0,0,58,474,1,0,0,0,60,61,7,0,0,0,61,1,1,0,0,0,62,64,3,4,2,0,
-        63,62,1,0,0,0,64,67,1,0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,70,1,
-        0,0,0,67,65,1,0,0,0,68,70,5,0,0,1,69,65,1,0,0,0,69,68,1,0,0,0,70,
+        1,0,0,0,58,474,1,0,0,0,60,62,3,4,2,0,61,60,1,0,0,0,62,65,1,0,0,0,
+        63,61,1,0,0,0,63,64,1,0,0,0,64,68,1,0,0,0,65,63,1,0,0,0,66,68,5,
+        0,0,1,67,63,1,0,0,0,67,66,1,0,0,0,68,1,1,0,0,0,69,70,7,0,0,0,70,
         3,1,0,0,0,71,73,3,6,3,0,72,74,5,30,0,0,73,72,1,0,0,0,73,74,1,0,0,
         0,74,76,1,0,0,0,75,77,5,51,0,0,76,75,1,0,0,0,76,77,1,0,0,0,77,81,
         1,0,0,0,78,81,5,30,0,0,79,81,5,51,0,0,80,71,1,0,0,0,80,78,1,0,0,
@@ -105,8 +105,8 @@ def serializedATN():
         212,214,5,8,0,0,213,215,3,4,2,0,214,213,1,0,0,0,214,215,1,0,0,0,
         215,29,1,0,0,0,216,217,5,11,0,0,217,218,3,42,21,0,218,219,5,27,0,
         0,219,220,3,8,4,0,220,221,5,28,0,0,221,31,1,0,0,0,222,223,5,21,0,
-        0,223,224,5,27,0,0,224,225,3,8,4,0,225,227,5,28,0,0,226,228,3,0,
-        0,0,227,226,1,0,0,0,227,228,1,0,0,0,228,229,1,0,0,0,229,230,3,34,
+        0,223,224,5,27,0,0,224,225,3,8,4,0,225,227,5,28,0,0,226,228,3,2,
+        1,0,227,226,1,0,0,0,227,228,1,0,0,0,228,229,1,0,0,0,229,230,3,34,
         17,0,230,33,1,0,0,0,231,232,5,22,0,0,232,233,5,23,0,0,233,234,3,
         14,7,0,234,235,5,24,0,0,235,35,1,0,0,0,236,237,6,18,-1,0,237,238,
         5,52,0,0,238,239,5,23,0,0,239,240,3,16,8,0,240,241,5,24,0,0,241,
@@ -189,7 +189,7 @@ def serializedATN():
         1,0,0,0,475,483,1,0,0,0,476,477,10,1,0,0,477,478,5,25,0,0,478,479,
         3,40,20,0,479,480,5,26,0,0,480,482,1,0,0,0,481,476,1,0,0,0,482,485,
         1,0,0,0,483,481,1,0,0,0,483,484,1,0,0,0,484,59,1,0,0,0,485,483,1,
-        0,0,0,33,65,69,73,76,80,97,101,106,130,137,141,150,156,166,175,179,
+        0,0,0,33,63,67,73,76,80,97,101,106,130,137,141,150,156,166,175,179,
         183,210,214,227,243,250,356,420,422,429,435,450,454,461,465,474,
         483
     ]
@@ -228,8 +228,8 @@ class RiddleParser ( Parser ):
                       "BINARY_DIGIT", "DIGIT", "STRING", "LINE_COMMENT", 
                       "BLOCK_COMMENT", "WHITESPACE" ]
 
-    RULE_null_cnt = 0
-    RULE_program = 1
+    RULE_program = 0
+    RULE_null_cnt = 1
     RULE_statement_ed = 2
     RULE_statement = 3
     RULE_bodyExpr = 4
@@ -259,7 +259,7 @@ class RiddleParser ( Parser ):
     RULE_templateArgs = 28
     RULE_typeName = 29
 
-    ruleNames =  [ "null_cnt", "program", "statement_ed", "statement", "bodyExpr", 
+    ruleNames =  [ "program", "null_cnt", "statement_ed", "statement", "bodyExpr", 
                    "packStatement", "importStatement", "varDefineStatement", 
                    "argsExpr", "defineArgs", "funcDefine", "forStatement", 
                    "whileStatement", "ifStatement", "returnStatement", "classDefine", 
@@ -337,67 +337,11 @@ class RiddleParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.13.1")
+        self.checkVersion("4.13.2")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
 
-
-
-    class Null_cntContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def Semi(self):
-            return self.getToken(RiddleParser.Semi, 0)
-
-        def Endl(self):
-            return self.getToken(RiddleParser.Endl, 0)
-
-        def getRuleIndex(self):
-            return RiddleParser.RULE_null_cnt
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterNull_cnt" ):
-                listener.enterNull_cnt(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitNull_cnt" ):
-                listener.exitNull_cnt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitNull_cnt" ):
-                return visitor.visitNull_cnt(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def null_cnt(self):
-
-        localctx = RiddleParser.Null_cntContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 0, self.RULE_null_cnt)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 60
-            _la = self._input.LA(1)
-            if not(_la==30 or _la==51):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
 
 
     class ProgramContext(ParserRuleContext):
@@ -440,21 +384,21 @@ class RiddleParser ( Parser ):
     def program(self):
 
         localctx = RiddleParser.ProgramContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 2, self.RULE_program)
+        self.enterRule(localctx, 0, self.RULE_program)
         self._la = 0 # Token type
         try:
-            self.state = 69
+            self.state = 67
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 65
+                self.state = 63
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while (((_la) & ~0x3f) == 0 and ((1 << _la) & -8937374183483830342) != 0):
-                    self.state = 62
+                    self.state = 60
                     self.statement_ed()
-                    self.state = 67
+                    self.state = 65
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
@@ -462,11 +406,67 @@ class RiddleParser ( Parser ):
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 68
+                self.state = 66
                 self.match(RiddleParser.EOF)
                 pass
 
 
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Null_cntContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def Semi(self):
+            return self.getToken(RiddleParser.Semi, 0)
+
+        def Endl(self):
+            return self.getToken(RiddleParser.Endl, 0)
+
+        def getRuleIndex(self):
+            return RiddleParser.RULE_null_cnt
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterNull_cnt" ):
+                listener.enterNull_cnt(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitNull_cnt" ):
+                listener.exitNull_cnt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNull_cnt" ):
+                return visitor.visitNull_cnt(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def null_cnt(self):
+
+        localctx = RiddleParser.Null_cntContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 2, self.RULE_null_cnt)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 69
+            _la = self._input.LA(1)
+            if not(_la==30 or _la==51):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

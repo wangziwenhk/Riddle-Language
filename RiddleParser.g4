@@ -10,14 +10,14 @@ options {
 @parserFile::members {
 }
 
-null_cnt
-    : Semi
-    | Endl
-    ;
-
 program
     : statement_ed*
     | EOF
+    ;
+
+null_cnt
+    : Semi
+    | Endl
     ;
 
 statement_ed

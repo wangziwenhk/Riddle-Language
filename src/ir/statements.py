@@ -26,6 +26,7 @@ class StmtTypeID(enum.Enum):
     LabelStmtID = 15
     BinaryOpStmtID = 16
     UnaryOpStmtID = 17
+    BodyStmtID = 18
 
 
 # 基本类型
@@ -47,10 +48,10 @@ class ConstantStmt(BaseStmt):
 
 
 class ProgramStmt(BaseStmt):
-    def __init__(self) -> None:
+    def __init__(self, package: str = '') -> None:
         super().__init__(StmtTypeID.ProgramStmt)
         self.body: list[BaseStmt] = []
-        self.package: str = ""
+        self.package: str = package
 
 
 # 存储 int 常量的语句
@@ -139,3 +140,15 @@ class FuncDefineStmt(BaseStmt):
         self.return_type = return_type
         self.args = args
         self.body = body
+
+
+class BodyStmt(BaseStmt):
+    def __init__(self, body: list[BaseStmt]) -> None:
+        super().__init__(StmtTypeID.BodyStmtID)
+        self.body = body
+
+
+class ReturnStmt(BaseStmt):
+    def __init__(self, result: BaseStmt) -> None:
+        super().__init__(StmtTypeID.ReturnStmtID)
+        self.result = result

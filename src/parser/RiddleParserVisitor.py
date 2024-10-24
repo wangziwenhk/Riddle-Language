@@ -1,4 +1,4 @@
-# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.1
+# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .RiddleParser import RiddleParser
@@ -9,13 +9,13 @@ else:
 
 class RiddleParserVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by RiddleParser#null_cnt.
-    def visitNull_cnt(self, ctx:RiddleParser.Null_cntContext):
+    # Visit a parse tree produced by RiddleParser#program.
+    def visitProgram(self, ctx:RiddleParser.ProgramContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by RiddleParser#program.
-    def visitProgram(self, ctx:RiddleParser.ProgramContext):
+    # Visit a parse tree produced by RiddleParser#null_cnt.
+    def visitNull_cnt(self, ctx:RiddleParser.Null_cntContext):
         return self.visitChildren(ctx)
 
 

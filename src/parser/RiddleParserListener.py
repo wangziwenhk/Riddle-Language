@@ -1,4 +1,4 @@
-# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.1
+# Generated from C:/Users/wangz/PycharmProjects/Riddle-Language/RiddleParser.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .RiddleParser import RiddleParser
@@ -8,21 +8,21 @@ else:
 # This class defines a complete listener for a parse tree produced by RiddleParser.
 class RiddleParserListener(ParseTreeListener):
 
-    # Enter a parse tree produced by RiddleParser#null_cnt.
-    def enterNull_cnt(self, ctx:RiddleParser.Null_cntContext):
-        pass
-
-    # Exit a parse tree produced by RiddleParser#null_cnt.
-    def exitNull_cnt(self, ctx:RiddleParser.Null_cntContext):
-        pass
-
-
     # Enter a parse tree produced by RiddleParser#program.
     def enterProgram(self, ctx:RiddleParser.ProgramContext):
         pass
 
     # Exit a parse tree produced by RiddleParser#program.
     def exitProgram(self, ctx:RiddleParser.ProgramContext):
+        pass
+
+
+    # Enter a parse tree produced by RiddleParser#null_cnt.
+    def enterNull_cnt(self, ctx:RiddleParser.Null_cntContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#null_cnt.
+    def exitNull_cnt(self, ctx:RiddleParser.Null_cntContext):
         pass
 
 
