@@ -21,7 +21,7 @@ class StmtTypeID(enum.Enum):
     ReturnStmtID = 10
     IfStmtID = 11
     TryStmtID = 12
-    ObjStmtID = 13
+    ObjectStmtID = 13
     BlockStmtID = 14
     LabelStmtID = 15
     BinaryOpStmtID = 16
@@ -152,3 +152,9 @@ class ReturnStmt(BaseStmt):
     def __init__(self, result: BaseStmt) -> None:
         super().__init__(StmtTypeID.ReturnStmtID)
         self.result = result
+
+
+class ObjectStmt(BaseStmt):
+    def __init__(self, name: str):
+        super().__init__(StmtTypeID.ObjectStmtID)
+        self.name = name

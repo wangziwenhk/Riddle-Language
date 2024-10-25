@@ -85,6 +85,10 @@ class StmtVisitor(RiddleParserVisitor):
         result = self.visit(ctx.result)
         return stmts.ReturnStmt(result)
 
+    def visitObjectExpr(self, ctx: RiddleParser.ObjectExprContext):
+        name = ctx.getText()
+        return stmts.ObjectStmt(name)
+
 
 class GenStmt:
     def __init__(self, name: str = '') -> None:
@@ -98,6 +102,8 @@ class GenStmt:
             stmts.FloatStmt: self.float,
             stmts.FuncDefineStmt: self.funcDefine,
             stmts.BodyStmt: self.body,
+            stmts.ReturnStmt: self.return_,
+            stmts.ObjectStmt: self.object_
         }
 
     def accept(self, stmt: stmts.BaseStmt):
@@ -107,22 +113,22 @@ class GenStmt:
         if handler is not None:
             return handler(stmt)
 
-    def program(self, stmt: stmts.ProgramStmt):
+    def program(self, stmt: stmts.ProgramStmt) -> None:
         self.builder.push()
         for i in stmt.body:
             self.accept(i)
         self.builder.pop()
 
-    def integer(self, stmt: stmts.IntegerStmt):
+    def integer(self, stmt: stmts.IntegerStmt) -> ir.Value:
         return self.builder.get_int(stmt.get_value())
 
-    def double(self, stmt: stmts.FloatStmt):
+    def double(self, stmt: stmts.FloatStmt) -> ir.Value:
         return self.builder.get_float(stmt.get_value())
 
-    def float(self, stmt: stmts.FloatStmt):
+    def float(self, stmt: stmts.FloatStmt) -> ir.Value:
         return self.builder.get_float(stmt.get_value())
 
-    def funcDefine(self, stmt: stmts.FuncDefineStmt):
+    def funcDefine(self, stmt: stmts.FuncDefineStmt) -> None:
         # 获取 function 相关选项
         arg_types: list[BuildArg] = []
         for i in stmt.args:
@@ -148,7 +154,16 @@ class GenStmt:
         self.parent.pop(-1)
         return None
 
-    def body(self, stmt: stmts.BodyStmt):
+    def body(self, stmt: stmts.BodyStmt) -> None:
         for i in stmt.body:
             self.accept(i)
         return None
+
+    def return_(self, stmt: stmts.ReturnStmt) -> None:
+        result = self.accept(stmt.result)
+        self.builder.create_return(result)
+        return None
+
+    def object_(self, stmt: stmts.ObjectStmt) -> ir.Value:
+        name = stmt.name
+        return self.builder.get_var(name)
