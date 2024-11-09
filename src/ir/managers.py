@@ -109,7 +109,7 @@ class ClassManager(BaseManager):
 
 class FunctionManager(BaseManager):
     def __init__(self) -> None:
-        self.functions: dict[str, list[tuple[ir.Function, BuildArg | None]]] = {}
+        self.functions: dict[str, list[tuple[ir.Function, list[BuildArg]]]] = {}
         self.defined: list[list[str]] = []
 
     def get(self, item: str) -> ir.Function:
@@ -117,7 +117,7 @@ class FunctionManager(BaseManager):
             raise KeyError('The function does not exist')
         return self.functions[item][-1][0]
 
-    def set(self, key: str, value: ir.Function, args: BuildArg | None = None) -> None:
+    def set(self, key: str, value: ir.Function, args: list[BuildArg] = []) -> None:
         if key in self.defined[-1]:
             raise KeyError('The function already exists')
 

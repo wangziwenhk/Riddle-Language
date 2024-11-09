@@ -125,6 +125,24 @@ class RiddleParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by RiddleParser#continueStatement.
+    def enterContinueStatement(self, ctx:RiddleParser.ContinueStatementContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#continueStatement.
+    def exitContinueStatement(self, ctx:RiddleParser.ContinueStatementContext):
+        pass
+
+
+    # Enter a parse tree produced by RiddleParser#breakStatement.
+    def enterBreakStatement(self, ctx:RiddleParser.BreakStatementContext):
+        pass
+
+    # Exit a parse tree produced by RiddleParser#breakStatement.
+    def exitBreakStatement(self, ctx:RiddleParser.BreakStatementContext):
+        pass
+
+
     # Enter a parse tree produced by RiddleParser#ifStatement.
     def enterIfStatement(self, ctx:RiddleParser.IfStatementContext):
         pass

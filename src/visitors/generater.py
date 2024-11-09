@@ -3,6 +3,7 @@ from llvmlite import ir
 
 import src.ir.statements as stmts
 from src.ir.builders import Builder, BuildArg
+from src.ir.statements import FuncDefineStmt
 from src.parser.RiddleParser import RiddleParser
 from src.parser.RiddleParserVisitor import RiddleParserVisitor
 
@@ -89,12 +90,23 @@ class StmtVisitor(RiddleParserVisitor):
         name = ctx.getText()
         return stmts.ObjectStmt(name)
 
+    def visitVarDefineStatement(self, ctx: RiddleParser.VarDefineStatementContext):
+        if ctx.name is None:
+            raise RuntimeError("Name is None")
+        name = ctx.name.text
+        value = self.visit(ctx.value)
+        typ = None
+        if ctx.type_:
+            typ = ctx.type_.text
+
+        return stmts.VarDefineStmt(name, typ, value)
+
 
 class GenStmt:
     def __init__(self, name: str = '') -> None:
         self.module = ir.Module(name)
         self.builder = Builder(self.module)
-        self.parent = []
+        self.parent: list[ir.Function] = []
 
         self.dispatch_table = {
             stmts.ProgramStmt: self.program,
@@ -103,7 +115,9 @@ class GenStmt:
             stmts.FuncDefineStmt: self.funcDefine,
             stmts.BodyStmt: self.body,
             stmts.ReturnStmt: self.return_,
-            stmts.ObjectStmt: self.object_
+            stmts.ObjectStmt: self.object_,
+            stmts.VarDefineStmt: self.varDefine,
+            stmts.FuncCallStmt: self.funcCall,
         }
 
     def accept(self, stmt: stmts.BaseStmt):
@@ -167,3 +181,19 @@ class GenStmt:
     def object_(self, stmt: stmts.ObjectStmt) -> ir.Value:
         name = stmt.name
         return self.builder.get_var(name)
+
+    def varDefine(self, stmt: stmts.VarDefineStmt) -> None:
+        name = stmt.name
+        value: ir.Value = self.accept(stmt.value)
+        typ: ir.Type
+        if stmt.type is None:
+            # noinspection PyUnresolvedReferences
+            typ = value.type
+        else:
+            typ = self.builder.get_type(stmt.type)
+
+        self.builder.create_variable(typ, name, value)
+        return None
+
+    def funcCall(self, stmt: stmts.FuncCallStmt):
+        self.builder.call(stmt.name, stmt.args)

@@ -74,6 +74,16 @@ class RiddleParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by RiddleParser#continueStatement.
+    def visitContinueStatement(self, ctx:RiddleParser.ContinueStatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RiddleParser#breakStatement.
+    def visitBreakStatement(self, ctx:RiddleParser.BreakStatementContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by RiddleParser#ifStatement.
     def visitIfStatement(self, ctx:RiddleParser.IfStatementContext):
         return self.visitChildren(ctx)

@@ -23,7 +23,7 @@ class Builder:
 
     def create_function(self, name: str, return_type: ir.types = ir.VoidType(), args: list[BuildArg] | None = None):
         if args is None:
-            args = {}
+            args = []
 
         # 获取类型
         args_type: list[ir.Type] = []
@@ -165,7 +165,8 @@ class Builder:
 
         return self._llvm_builder.block
 
-    def add_func_call(self, name: str, func: ir.Function, args: list[BuildArg] | None = None) -> None:
+    def add_func_call(self, name: str, func: ir.Function, args: list[BuildArg] = []) -> None:
+
         self._func_manager.set(name, func, args)
 
     def set_insert_block(self, block: ir.Block) -> None:
@@ -180,12 +181,14 @@ class Builder:
 
         self._llvm_builder.branch(block)
 
-    def call(self, function: ir.Function, args: list[ir.Value], name: str = '', cconv=None, tail: bool = False,
+    def call(self, name: str, args: list[ir.Value], result_name: str = '', cconv=None, tail: bool = False,
              fastmath: tuple = (), attrs: tuple = (), arg_attrs=None) -> ir.Value:
         if self._llvm_builder is None:
             raise RuntimeError('Cannot create statement outside the allowed scope')
 
-        return self._llvm_builder.call(function, args, name, cconv, tail, fastmath, attrs, arg_attrs)
+        function = self._func_manager.get(name)
+
+        return self._llvm_builder.call(function, args, result_name, cconv, tail, fastmath, attrs, arg_attrs)
 
     def get_var(self, name: str) -> ir.Value:
         return self._var_manager.get(name)

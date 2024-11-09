@@ -27,6 +27,8 @@ class StmtTypeID(enum.Enum):
     BinaryOpStmtID = 16
     UnaryOpStmtID = 17
     BodyStmtID = 18
+    ArgStmtID = 19
+    ArgListStmtID = 20
 
 
 # 基本类型
@@ -113,18 +115,9 @@ class NoneStmt(BaseStmt):
 class VarDefineStmt(BaseStmt):
     def __init__(self, name: str, typ: str, value: BaseStmt) -> None:
         super().__init__(StmtTypeID.VarDefineStmtID)
-        self._name = name
-        self._type = typ
-        self._value = value
-
-    def get_name(self) -> str:
-        return self._name
-
-    def get_type(self) -> str:
-        return self._type
-
-    def get_value(self) -> BaseStmt:
-        return self._value
+        self.name = name
+        self.type = typ
+        self.value = value
 
 
 class FuncDefineStmt(BaseStmt):
@@ -158,3 +151,22 @@ class ObjectStmt(BaseStmt):
     def __init__(self, name: str):
         super().__init__(StmtTypeID.ObjectStmtID)
         self.name = name
+
+
+class ArgStmt(BaseStmt):
+    def __init__(self, value: BaseStmt) -> None:
+        super().__init__(StmtTypeID.ArgStmtID)
+        self.value = value
+
+
+class ArgListStmt(BaseStmt):
+    def __init__(self, args: list[ArgStmt]) -> None:
+        super().__init__(StmtTypeID.ArgListStmtID)
+        self.args = args
+
+
+class FuncCallStmt(BaseStmt):
+    def __init__(self, name: str, args: ArgStmt) -> None:
+        super().__init__(StmtTypeID.FuncCallStmtID)
+        self.name = name
+        self.args = args

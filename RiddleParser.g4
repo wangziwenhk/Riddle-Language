@@ -5,16 +5,19 @@ options {
 }
 
 @Header{
+
 }
 
 @parserFile::members {
 }
 
+
+
 program
     : statement_ed*
     | EOF
     ;
-
+    
 null_cnt
     : Semi
     | Endl
@@ -36,15 +39,16 @@ statement
     | whileStatement
     | ifStatement
     | returnStatement
+    | continueStatement
+    | breakStatement
     | tryExpr
     | expression
-    | LeftCurly statement_ed* RightCurly
+    | bodyExpr
     ;
 
 bodyExpr
-    : statement_ed*
+    : LeftCurly statement_ed* RightCurly
     ;
-
 
 packStatement
     : Package packName=id
@@ -69,15 +73,22 @@ defineArgs
     ;
 
 funcDefine
-    : Func funcName=Identifier LeftBracket args=defineArgs RightBracket (Sub Greater returnType=typeName)? LeftCurly body=bodyExpr RightCurly
+    : Func funcName=Identifier LeftBracket args=defineArgs RightBracket (Sub Greater returnType=typeName)? body=bodyExpr
     ;
-
 forStatement
-    : For LeftBracket (init=varDefineStatement)? Semi (termCond=expression)? Semi (selfVar=statement)? RightBracket body=statement_ed
+    : For LeftBracket (init=statement)? Semi (termCond=statement)? Semi (selfVar=statement)? RightBracket body=statement_ed
     ;
 
 whileStatement
     : While LeftBracket runCond=expression RightBracket body=statement_ed
+    ;
+
+continueStatement
+    : Continue
+    ;
+
+breakStatement
+    : Break
     ;
 
 ifStatement returns [bool hasElse]
@@ -90,11 +101,11 @@ returnStatement
     ;
 
 classDefine
-    : Class className = id LeftCurly body=bodyExpr RightCurly
+    : Class className = id body=bodyExpr
     ;
 
 tryExpr
-    : Try LeftCurly tryBody=bodyExpr RightCurly null_cnt? catchExpr
+    : Try tryBody=bodyExpr null_cnt? catchExpr
     ;
 
 catchExpr
