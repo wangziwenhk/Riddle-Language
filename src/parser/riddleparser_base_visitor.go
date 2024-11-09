@@ -60,6 +60,14 @@ func (v *BaseRiddleParserVisitor) VisitWhileStatement(ctx *WhileStatementContext
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseRiddleParserVisitor) VisitContinueStatement(ctx *ContinueStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseRiddleParserVisitor) VisitBreakStatement(ctx *BreakStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseRiddleParserVisitor) VisitIfStatement(ctx *IfStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }

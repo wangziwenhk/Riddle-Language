@@ -11,13 +11,11 @@ options {
 @parserFile::members {
 }
 
-
-
 program
     : statement_ed*
     | EOF
     ;
-    
+
 null_cnt
     : Semi
     | Endl
@@ -39,6 +37,8 @@ statement
     | whileStatement
     | ifStatement
     | returnStatement
+    | continueStatement
+    | breakStatement
     | tryExpr
     | expression
     | bodyExpr
@@ -73,12 +73,21 @@ defineArgs
 funcDefine
     : Func funcName=Identifier LeftBracket args=defineArgs RightBracket (Sub Greater returnType=typeName)? body=bodyExpr
     ;
+
 forStatement
     : For LeftBracket (init=statement)? Semi (termCond=statement)? Semi (selfVar=statement)? RightBracket body=statement_ed
     ;
 
 whileStatement
     : While LeftBracket runCond=expression RightBracket body=statement_ed
+    ;
+
+continueStatement
+    : Continue
+    ;
+
+breakStatement
+    : Break
     ;
 
 ifStatement returns [bool hasElse]
@@ -102,11 +111,10 @@ catchExpr
     : Catch LeftBracket varDefineStatement RightBracket
     ;
 
-// 这一块就是使用
 exprPtr
     : funcName=Identifier LeftBracket args=argsExpr RightBracket    #funcExpr
     | Identifier                                                    #objectExpr
-    | parent=exprPtr Dot child=exprPtr                              #blendExpr
+    | parents=exprPtr Dot childs=exprPtr                              #blendExpr
     ;
 
 exprPtrParser
@@ -164,7 +172,6 @@ expression
 
 id: Identifier;
 
-//这里是指常量
 number
     : integer
     | float
@@ -179,25 +186,15 @@ string
     : STRING
     ;
 
-float returns [double value]
-    : Float{
-        $value = stod($Float.text);
-    }
+float returns [float64 value]
+    : Float{$value,_ = strconv.ParseFloat($Float.text, 64)}
     ;
 
 integer returns [int value]
-    : Decimal{
-        $value = stoi($Decimal.text);
-    }
-    | Hexadecimal{
-        $value = stoi($Hexadecimal.text.substr(2),nullptr,16);
-    }
-    | Binary{
-        $value = stoi($Binary.text.substr(2),nullptr,2);
-    }
-    | Octal{
-        $value = stoi($Octal.text.substr(1),nullptr,8);
-    }
+    : Decimal{value, _ := strconv.Atoi($Decimal.text);$value = int(value)}
+    | Hexadecimal{value, _ := strconv.ParseInt($Hexadecimal.text[2:], 16, 32);$value = int(value)}
+    | Binary{value, _ := strconv.ParseInt($Binary.text[2:], 2, 32);$value = int(value)}
+    | Octal{value, _ := strconv.ParseInt($Octal.text[1:], 8, 32);$value = int(value)}
     ;
 
 templateArg

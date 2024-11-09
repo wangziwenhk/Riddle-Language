@@ -47,6 +47,12 @@ type RiddleParserVisitor interface {
 	// Visit a parse tree produced by RiddleParser#whileStatement.
 	VisitWhileStatement(ctx *WhileStatementContext) interface{}
 
+	// Visit a parse tree produced by RiddleParser#continueStatement.
+	VisitContinueStatement(ctx *ContinueStatementContext) interface{}
+
+	// Visit a parse tree produced by RiddleParser#breakStatement.
+	VisitBreakStatement(ctx *BreakStatementContext) interface{}
+
 	// Visit a parse tree produced by RiddleParser#ifStatement.
 	VisitIfStatement(ctx *IfStatementContext) interface{}
 

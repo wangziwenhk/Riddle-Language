@@ -23,9 +23,6 @@ func main() {
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	p := parser.NewRiddleParser(stream)
 
-	// 使用默认的诊断错误监听器
-	p.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
-
 	programContext := p.Program()
 
 	visitor := gen.NewStmtVisitor()

@@ -99,6 +99,18 @@ func (s *BaseRiddleParserListener) EnterWhileStatement(ctx *WhileStatementContex
 // ExitWhileStatement is called when production whileStatement is exited.
 func (s *BaseRiddleParserListener) ExitWhileStatement(ctx *WhileStatementContext) {}
 
+// EnterContinueStatement is called when production continueStatement is entered.
+func (s *BaseRiddleParserListener) EnterContinueStatement(ctx *ContinueStatementContext) {}
+
+// ExitContinueStatement is called when production continueStatement is exited.
+func (s *BaseRiddleParserListener) ExitContinueStatement(ctx *ContinueStatementContext) {}
+
+// EnterBreakStatement is called when production breakStatement is entered.
+func (s *BaseRiddleParserListener) EnterBreakStatement(ctx *BreakStatementContext) {}
+
+// ExitBreakStatement is called when production breakStatement is exited.
+func (s *BaseRiddleParserListener) ExitBreakStatement(ctx *BreakStatementContext) {}
+
 // EnterIfStatement is called when production ifStatement is entered.
 func (s *BaseRiddleParserListener) EnterIfStatement(ctx *IfStatementContext) {}
 
